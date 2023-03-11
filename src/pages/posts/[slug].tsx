@@ -41,10 +41,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   const session = await getSession({ req })
   const { slug } = params;
 
+  const redirectUrl = `/posts/preview/${slug}`;
+
+  console.log(session);
+
   if (!session?.activeSubscription) {
     return {
       redirect: {
-        destination: '/',
+        destination: redirectUrl,
         permanent: false,
       }
     }
